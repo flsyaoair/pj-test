@@ -6,7 +6,7 @@ from sqlalchemy.orm import Session
 from sqlalchemy.ext.declarative import declarative_base
 
 from math import  ceil
-DB ='mysql+mysqlconnector://root:@127.0.0.1:3306/pj-test?charset=utf8'
+DB ='mysql+mysqlconnector://root:jmlogistics@192.168.23.133:3306/pj-test?charset=utf8'
 DEBUG=True
 
 engine = create_engine(DB,echo=DEBUG)

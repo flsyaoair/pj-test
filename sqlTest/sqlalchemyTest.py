@@ -12,7 +12,9 @@ class Blog(BaseModel):
     user = Column(BIGINT, ForeignKey('user.id'), index=True, nullable=False)
     create = Column(BIGINT, index=True, server_default='0', nullable=False)
     
-    user_obj = relationship('User')
+#     user_obj = relationship('User')
+    user_obj = relationship('User', lazy='joined')
+    
 
 
 class User(BaseModel):
@@ -23,6 +25,10 @@ class User(BaseModel):
     username = Column(String(32), index=True, server_default='', nullable=True)
     password = Column(String(64), server_default='', nullable=False)
     
-    blog_list = relationship('Blog', order_by='Blog.create')
+#     blog_list = relationship('Blog', order_by='Blog.create', lazy="dynamic")
+    
+#     blog_list = relationship('Blog', order_by='Blog.create')
+    blog_list = relationship('Blog',
+                             cascade='save-update, delete, delete-orphan, merge')
     
     
